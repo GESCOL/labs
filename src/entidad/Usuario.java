@@ -7,7 +7,7 @@ package entidad;
 
 /**
  *
- * @author juandavid
+ * @author juan
  */
 public class Usuario {
     
