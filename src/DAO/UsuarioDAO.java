@@ -18,7 +18,7 @@ import java.sql.Statement;
  */
 public class UsuarioDAO {    
     static final String DB_URL
-            = "jdbc:mysql://labrds.cuenz66svftm.us-east-1.rds.amazonaws.com"; //Endpoint
+            = "jdbc:mysql://labrds.cuenz66svftm.us-east-1.rds.amazonaws.com:3306/loginapp"; //Endpoint
     static final String DB_DRV
             = "com.mysql.jdbc.Driver";
     static final String DB_USER = "admin";
