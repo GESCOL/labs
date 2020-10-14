@@ -23,7 +23,22 @@ public class ValidarLogin {
 	
 	@PostMapping
 	public boolean registro(@RequestBody Usuario usuario) {
+		if(!this.verificarLongitudClave(usuario.getPassword())) {
+			return false;
+		}
+		else if(!this.verificarLongitudNombre(usuario.getNombre())){
+			return false;
+		}
 		return dao.leer(usuario);
+	}
+	
+	private boolean verificarLongitudNombre(String nombre) {
+		return (nombre.length() > 1 && nombre.length() <= 6);
+	}
+	
+	private boolean verificarLongitudClave(String clave) {
+		return (clave.length() >= 3 && clave.length() < 6);
+		
 	}
 
 }
