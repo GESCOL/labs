@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package com.g7.Control;
 
-import DAO.UsuarioDAO;
-import entidad.Usuario;
+import com.g7.DAO.UsuarioDAO;
+import com.g7.entidad.Usuario;
 import junit.framework.TestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
