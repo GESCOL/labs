@@ -63,17 +63,17 @@
                         <form id="formRegistro" action="#" method="post">
                             <div class="form-group">
                                 <label for="nombreRegistro">Nombre de usuario</label>
-                                <input type="text" class="form-control" id="nombreRegistro" minlength="1" maxlength="7"
+                                <input type="text" class="form-control" id="nombreRegistro" minlength="1" maxlength="6"
                                     required>
                             </div>
                             <div class="form-group">
                                 <label for="passwordRegistro">Contraseña</label>
                                 <input type="password" class="form-control" id="passwordRegistro" minlength="3"
-                                    maxlength="6" required>
+                                    maxlength="5" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Confirma tu contraseña</label>
-                                <input type="password" class="form-control" id="confirmPwd" minlength="3" maxlength="6"
+                                <input type="password" class="form-control" id="confirmPwd" minlength="3" maxlength="5"
                                     required>
                             </div>
                             <input type="submit" id="registro" value="Registrarme" class="btn btn-primary">
@@ -83,12 +83,12 @@
                         <form id="formIngreso" action="#" method="post">
                             <div class="form-group">
                                 <label for="nombreIngreso">Nombre de usuario</label>
-                                <input type="text" class="form-control" id="nombreIngreso" required>
+                                <input type="text" class="form-control" id="nombreIngreso" minlength="1" maxlength="6" required>
                             </div>
                             <div class="form-group">
                                 <label for="passwordIngreso">Contraseña</label>
                                 <input type="password" class="form-control" id="passwordIngreso" minlength="3"
-                                    maxlength="6" required>
+                                    maxlength="5" required>
                             </div>
                             <input type="submit" value="Ingresar" id="ingreso" class="btn btn-primary">
                         </form>
@@ -106,8 +106,8 @@
 
     <script>
         $("#registro")[0].onclick = function () {
-            if ($("#confirmPwd")[0].value != "" && $("#password")[0].value != "") {
-                if ($("#password")[0].value != $("#confirmPwd")[0].value) {
+            if ($("#confirmPwd")[0].value != "" && $("#passwordRegistro")[0].value != "") {
+                if ($("#passwordRegistro")[0].value != $("#confirmPwd")[0].value) {
                     $("#confirmPwd")[0].setCustomValidity("Las contraseñas no coinciden");
                     $("#confirmPwd")[0].reportValidity();
                 } else {
@@ -150,7 +150,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     var response = xhr.responseText;
-                    if(response){
+                    if(response == "true"){
                         $("#message")[0].innerHTML = "Tu " + tipo + " fue exitoso";
                         $('#formContent')[0].style.display = "none";
                     } else {
