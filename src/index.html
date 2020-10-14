@@ -62,7 +62,7 @@
                     <form id="formRegistro" action="#" method="post">
                         <div class="form-group">
                             <label for="email">Dirección de correo</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                            <input type="text" class="form-control" id="email" aria-describedby="emailHelp" required>
                             <small id="emailHelp" class="form-text text-muted">Introduce una dirección de correo
                                 válida</small>
                         </div>
@@ -81,7 +81,7 @@
                     <form id="formIngreso" action="#" method="post">
                         <div class="form-group">
                             <label for="email">Dirección de correo</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                            <input type="text" class="form-control" id="email" aria-describedby="emailHelp" required>
                             <small id="emailHelp" class="form-text text-muted">Introduce una dirección de correo
                                 válida</small>
                         </div>
@@ -132,11 +132,14 @@
             }
             console.log(url);
             var inputs = $('#'+id).find('input');
-            var datos = `{
-    "nombre" : ${inputs[0].value},
-    "password" : ${inputs[1].value}
-}`;
+            var datos = '{'+
+                '"nombre" : "' + inputs[0].value + '",'+
+                '"password" : "' + inputs[1].value + '"}';
             console.log(datos);
+		 var obj = new Object();
+   obj.nombre = inputs[0].value;
+   obj.password  = inputs[1].value;
+   var datos2 = JSON.stringify(obj);
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -144,8 +147,9 @@
                     alert(xhr.responseText);
                 }
             }
-            xhr.open('GET', url, true);
-            xhr.send(datos);
+            xhr.open('POST', url, true);
+	    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(datos2);
         }
     </script>
 </body>
