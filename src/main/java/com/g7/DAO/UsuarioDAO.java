@@ -11,12 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 import com.g7.entidad.Usuario;
 
 /**
  *
  * @author pmoro
  */
+
 public class UsuarioDAO {    
     static final String DB_URL
             = "jdbc:mysql://labrds.cuenz66svftm.us-east-1.rds.amazonaws.com:3306/loginapp"; //Endpoint
