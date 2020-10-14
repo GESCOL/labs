@@ -23,7 +23,7 @@ public class ValidarLogin {
 	
 	@PostMapping
 	public boolean registro(@RequestBody Usuario usuario) {
-
+		verificarLogin(usuario);
 		return dao.leer(usuario);
 	}
 	
