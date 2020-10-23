@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUIs</title>
-    <link rel="icon" 
-      type="image/png" 
-      href="https://logosvector.net/wp-content/uploads/2013/06/universidad-nacional-de-colombia-vector-logo.png">
-      
+    <link rel="icon" type="image/png"
+        href="https://logosvector.net/wp-content/uploads/2013/06/universidad-nacional-de-colombia-vector-logo.png">
+
     <style>
         .window {
             width: 100%;
@@ -22,6 +21,7 @@
             margin: auto;
             margin-top: 40px;
         }
+
         .footer {
             display: flex;
             vertical-align: middle;
@@ -59,7 +59,7 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-registro" role="tabpanel"
                     aria-labelledby="nav-registro-tab">
-                    <form action="">
+                    <form id="formRegistro" action="#" method="post">
                         <div class="form-group">
                             <label for="email">Dirección de correo</label>
                             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
@@ -74,11 +74,11 @@
                             <label for="exampleInputPassword1">Confirma tu contraseña</label>
                             <input type="password" class="form-control" id="confirmPwd" required>
                         </div>
-                        <button type="submit" id="registro" class="btn btn-primary">Registrarme</button>
+                        <input type="submit" id="registro" value="Registrarme" class="btn btn-primary">
                     </form>
                 </div>
                 <div class="tab-pane fade" id="nav-ingreso" role="tabpanel" aria-labelledby="nav-ingreso-tab">
-                    <form action="">
+                    <form id="formIngreso" action="#" method="post">
                         <div class="form-group">
                             <label for="email">Dirección de correo</label>
                             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
@@ -89,7 +89,7 @@
                             <label for="password">Contraseña</label>
                             <input type="password" class="form-control" id="password" required>
                         </div>
-                        <button type="submit" id="ingreso" class="btn btn-primary">Ingresar</button>
+                        <input type="submit" value="Ingresar" id="ingreso" class="btn btn-primary">
                     </form>
                 </div>
             </div>
@@ -111,6 +111,41 @@
                     $("#confirmPwd")[0].setCustomValidity("");
                 }
             }
+        }
+
+        $("#formRegistro")[0].addEventListener("submit", function (event) {
+            event.preventDefault();
+            sendData("formRegistro");
+        });
+
+        $("#formIngreso")[0].addEventListener("submit", function (event) {
+            event.preventDefault();
+            sendData("formIngreso");
+        });
+
+        function sendData(id) {
+            var url;
+            if (id == "formRegistro") {
+                url = "http://localhost:8080/register";
+            } else if (id == "formIngreso") {
+                url = "http://localhost:8080/login";
+            }
+            console.log(url);
+            var inputs = $('#'+id).find('input');
+            var datos = `{
+    "nombre" : ${inputs[0].value},
+    "password" : ${inputs[1].value}
+}`;
+            console.log(datos);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    var response = xhr.responseText;
+                    alert(xhr.responseText);
+                }
+            }
+            xhr.open('GET', url, true);
+            xhr.send(datos);
         }
     </script>
 </body>
